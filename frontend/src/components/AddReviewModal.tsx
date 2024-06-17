@@ -64,7 +64,7 @@ const AddReviewModal = ({ children }: InvestModalProps) => {
         action: {
           label: "View on Etherscan",
           onClick: () => {
-            window.open(`https://explorer.celo.org/alfajores/tx/${hash}`);
+            window.open(`https://explorer-testnet.morphl2.io/tx/${hash}`);
           },
         },
       });
