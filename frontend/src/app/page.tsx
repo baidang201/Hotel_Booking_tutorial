@@ -1,31 +1,17 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { parseEther } from "viem";
 
-import { Rooms } from "@/constants/dummy";
-import {
-  tokenAbi,
-  bookingAbi,
-  tokenAddress,
-  bookingAddress,
-} from "@/constants";
+import { bookingAbi, bookingAddress } from "@/constants";
 
-import { useReadContract, useAccount, useWriteContract } from "wagmi";
+import { useReadContract } from "wagmi";
 import RoomCard from "@/components/RoomCard";
 import AddRoomModal from "@/components/AddRoomModal";
-import AddReviewModal from "@/components/AddReviewModal";
 
 export default function Home() {
   const [rooms, setRooms] = useState<any>([]);
 
-  const {
-    data: roomData,
-    status,
-    isLoading,
-    error,
-  } = useReadContract({
+  const { data: roomData } = useReadContract({
     abi: bookingAbi,
     address: bookingAddress,
     functionName: "getAllRooms",
@@ -33,8 +19,6 @@ export default function Home() {
 
   useEffect(() => {
     if (roomData) {
-      console.log(roomData);
-      // Assuming the contract returns an array of rooms, cast it to Room[]
       setRooms(roomData);
     }
   }, [roomData]);
@@ -53,7 +37,6 @@ export default function Home() {
       </section>
 
       <div>
-        {/* {isLoading && <div>Loading...</div>} */}
         {rooms.length > 0 ? (
           rooms?.map((room: any) => (
             <>

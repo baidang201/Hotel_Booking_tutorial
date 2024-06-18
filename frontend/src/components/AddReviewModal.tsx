@@ -8,14 +8,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useEffect, useState } from "react";
-import { parseEther, parseUnits, Address } from "viem";
-import {
-  tokenAbi,
-  bookingAbi,
-  tokenAddress,
-  bookingAddress,
-} from "@/constants";
+import { useEffect } from "react";
+import { bookingAbi, bookingAddress } from "@/constants";
 import { toast } from "sonner";
 import {
   Form,
@@ -26,12 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import {
-  useWaitForTransactionReceipt,
-  useWriteContract,
-  type BaseError,
-  useAccount,
-} from "wagmi";
+import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
