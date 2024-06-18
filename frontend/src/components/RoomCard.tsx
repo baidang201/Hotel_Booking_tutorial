@@ -1,10 +1,5 @@
-import { useReadContract, useAccount, useWriteContract } from "wagmi";
-import {
-  tokenAbi,
-  bookingAbi,
-  tokenAddress,
-  bookingAddress,
-} from "@/constants";
+import { useWriteContract } from "wagmi";
+import { bookingAbi, bookingAddress } from "@/constants";
 import { toast } from "sonner";
 import AddReviewModal from "./AddReviewModal";
 
