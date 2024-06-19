@@ -9,7 +9,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useEffect } from "react";
-import { bookingAbi, bookingAddress } from "@/constants";
+import {
+  bookingAbi,
+  bookingAddress,
+  tokenAbi,
+  tokenAddress,
+} from "@/constants";
 import { toast } from "sonner";
 import {
   Form,
@@ -27,6 +32,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MoveLeft } from "lucide-react";
+import { parseUnits } from "viem";
 
 interface InvestModalProps {
   children: React.ReactNode;
@@ -80,8 +86,9 @@ const AddRoomModal = ({ children }: InvestModalProps) => {
     console.log(data);
     try {
       const addRoomTx = await writeContractAsync({
-        abi: bookingAbi,
         address: bookingAddress,
+        abi: bookingAbi,
+
         functionName: "addRoom",
         args: [data.category, data.price],
       });
@@ -89,6 +96,7 @@ const AddRoomModal = ({ children }: InvestModalProps) => {
       console.log("room transaction hash:", addRoomTx);
     } catch (err: any) {
       toast.error("Transaction Failed: " + err.message);
+      console.log("Transaction Failed: " + err.message);
     }
   };
 

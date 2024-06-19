@@ -1,7 +1,7 @@
 import { tokenAbi } from "./tokenAbi";
 import { bookingAbi } from "./bookingAbi";
 
-const tokenAddress = "0xdCc98C1a6A6182986afe8428Da5A313c602f3F32";
-const bookingAddress = "0xdFe75126781E1A3238C3C91b766B098c2eAd94BD";
+const tokenAddress = "0x54D62ec69689d1ea02401F5DfE356fD8AA5e91ea";
+const bookingAddress = "0xF077BF253E9827f5eec828f8562377F781E05bbd";
 
 export { tokenAbi, tokenAddress, bookingAbi, bookingAddress };
