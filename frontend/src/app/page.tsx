@@ -11,7 +11,11 @@ import AddRoomModal from "@/components/AddRoomModal";
 export default function Home() {
   const [rooms, setRooms] = useState<any>([]);
 
-  const { data: roomData } = useReadContract({
+  const {
+    data: roomData,
+    error,
+    status,
+  } = useReadContract({
     abi: bookingAbi,
     address: bookingAddress,
     functionName: "getAllRooms",
