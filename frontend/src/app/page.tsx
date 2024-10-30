@@ -7,6 +7,7 @@ import { bookingAbi, bookingAddress } from "@/constants";
 import { useReadContract } from "wagmi";
 import RoomCard from "@/components/RoomCard";
 import AddRoomModal from "@/components/AddRoomModal";
+import SetAvailabilityModal from "@/components/SetAvailabilityModal";
 
 export default function Home() {
   const [rooms, setRooms] = useState<any>([]);
@@ -32,7 +33,10 @@ export default function Home() {
             <Button>Add room</Button>
           </AddRoomModal>
 
-          <Button>Set availability</Button>
+          <SetAvailabilityModal>
+            <Button>Set availability</Button>
+          </SetAvailabilityModal>
+          
         </div>
       </section>
 
