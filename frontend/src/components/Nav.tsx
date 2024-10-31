@@ -5,14 +5,32 @@ import { useAccount } from "wagmi";
 import { Button } from "./ui/button";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { truncateAddress } from "@/lib/utils";
+import { bookingAbi, bookingAddress, tokenAbi, tokenAddress } from "@/constants";
+import { useReadContract } from "wagmi";
+import { useEffect, useState } from "react";
+
 
 export default function Nav() {
   const { isConnected, address } = useAccount();
   const { open } = useWeb3Modal();
+  const [token, setToken] = useState<any>([]);
 
   const handleConnect = () => {
     open();
   };
+
+  const {data: tokenData } = useReadContract({
+    abi: tokenAbi,
+    address: tokenAddress,
+    functionName: "balanceOf",
+    args: [address],
+  });
+
+  useEffect(() => {
+    if (address && tokenData) {
+      setToken(tokenData.toString());
+    }
+  }, [tokenData, address]);
 
   return (
     <header>
@@ -44,7 +62,9 @@ export default function Nav() {
               {!isConnected ? (
                 <Button onClick={handleConnect}>Connect Wallet</Button>
               ) : (
-                <p>{truncateAddress(address)}</p>
+                <p>
+                  {truncateAddress(address)}&nbsp;{token} HTK
+                </p>
               )}
               <ModeToggle />
             </div>
