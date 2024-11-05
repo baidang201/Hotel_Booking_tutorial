@@ -78,7 +78,7 @@ const SetAvailabilityModal = ({ children }: InvestModalProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       roomId: 0,
-      isAvailable: true,
+      isAvailable: false,
     },
   });
 
